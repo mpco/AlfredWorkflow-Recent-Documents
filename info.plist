@@ -92,7 +92,7 @@
 				<key>subtext</key>
 				<string></string>
 				<key>title</key>
-				<string>Open recent Apps</string>
+				<string>Open recent apps</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -219,7 +219,7 @@ fi</string>
 				<key>subtext</key>
 				<string></string>
 				<key>title</key>
-				<string>Open recent documents for front App</string>
+				<string>Open recent documents for the foremost app</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -265,7 +265,7 @@ fi</string>
 		<key>FEEBCB26-E74C-411D-9DC4-B8E92B0A9DA8</key>
 		<dict>
 			<key>note</key>
-			<string>Front App's Recent Documents</string>
+			<string>Foremost App's Recent Documents</string>
 			<key>xpos</key>
 			<integer>170</integer>
 			<key>ypos</key>

@@ -2,6 +2,8 @@
 
 This workflow can list documents and apps open recently.
 
+System: macOS 10.13+
+
 [Download](https://github.com/mpco/Alfred3-workflow-recent-documents/releases) [中文说明](https://github.com/mpco/Alfred3-workflow-recent-documents/blob/master/README_CN.md)
 
 ## How to use

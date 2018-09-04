@@ -9,6 +9,8 @@
 - 文本编辑在最前，则列出最近打开的 rtf、txt 文件。
 - Keynote 在最前，则列出最近打开的 Keynote 文档。
 
+系统要求：macOS 10.13+
+
 [下载 Workflow](https://github.com/mpco/Alfred3-workflow-recent-documents/releases)
 
 ## 用法说明
