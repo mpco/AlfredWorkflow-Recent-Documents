@@ -2,9 +2,9 @@
 
 This workflow can list documents and apps open recently.
 
-[Download](https://github.com/mpco/Alfred3-workflow-recent-documents/releases)
+[Download](https://github.com/mpco/Alfred3-workflow-recent-documents/releases) [中文说明](https://github.com/mpco/Alfred3-workflow-recent-documents/blob/master/README_CN.md)
 
-## Screenshots
+## How to use
 
 Tap "rra" to list recent apps.
 

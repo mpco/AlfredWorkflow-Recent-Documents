@@ -3,9 +3,15 @@
 快捷打开最近访问的文档和应用。    
 还可以快捷打开当前应用的最近文档。
 
+例如：
+
+- 访达在最前，则列出最近访问的文件夹。无需一层层地找刚刚关闭的文件夹。
+- 文本编辑在最前，则列出最近打开的 rtf、txt 文件。
+- Keynote 在最前，则列出最近打开的 Keynote 文档。
+
 [下载 Workflow](https://g0ithub.com/m/Alfred3-workflow-recent-documents/releases)
 
-## 截图
+## 用法说明
 
 输入 rra，列出最近打开的应用。
 
