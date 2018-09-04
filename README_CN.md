@@ -9,7 +9,7 @@
 - 文本编辑在最前，则列出最近打开的 rtf、txt 文件。
 - Keynote 在最前，则列出最近打开的 Keynote 文档。
 
-[下载 Workflow](https://github.com/m/Alfred3-workflow-recent-documents/releases)
+[下载 Workflow](https://github.com/mpco/Alfred3-workflow-recent-documents/releases)
 
 ## 用法说明
 
