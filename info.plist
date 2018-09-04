@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>com.mpcx.recents</string>
+	<string>com.mpco.recentDocuments</string>
 	<key>category</key>
 	<string>Productivity</string>
 	<key>connections</key>
@@ -219,7 +219,7 @@ fi</string>
 				<key>subtext</key>
 				<string></string>
 				<key>title</key>
-				<string>Open recent documents for current App</string>
+				<string>Open recent documents for front App</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -234,7 +234,7 @@ fi</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>Website: https://github.com/mpco/Alfred3-workflow-recent-documents</string>
 	<key>uidata</key>
 	<dict>
 		<key>9F8BAD89-AA36-49E3-AC08-2F634A88C595</key>
@@ -265,7 +265,7 @@ fi</string>
 		<key>FEEBCB26-E74C-411D-9DC4-B8E92B0A9DA8</key>
 		<dict>
 			<key>note</key>
-			<string>Current App's Recent Documents</string>
+			<string>Front App's Recent Documents</string>
 			<key>xpos</key>
 			<integer>170</integer>
 			<key>ypos</key>
@@ -273,8 +273,8 @@ fi</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.94</string>
+	<string>1.9.4</string>
 	<key>webaddress</key>
-	<string></string>
+	<string>https://github.com/mpco/Alfred3-workflow-recent-documents</string>
 </dict>
 </plist>
