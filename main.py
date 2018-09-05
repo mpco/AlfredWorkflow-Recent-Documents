@@ -9,6 +9,7 @@ from mac_alias import Bookmark
 import sys
 import os
 import json
+import time
 
 
 def BLOBParser_human(blob):
@@ -22,6 +23,7 @@ def BLOBParser_human(blob):
         print e
 
 
+# for 10.13
 def ParseSFL2(MRUFile):
 
     itemsLinkList = []
@@ -46,15 +48,33 @@ def ParseSFL2(MRUFile):
                     if isinstance(attributes["Bookmark"], str):
                         itemLink = BLOBParser_human(attributes["Bookmark"])
                     else:
-                        itemLink = BLOBParser_human(
-                            attributes["Bookmark"]['NS.data'])
+                        itemLink = BLOBParser_human(attributes["Bookmark"]['NS.data'])
                     itemsLinkList.append(itemLink)
             return itemsLinkList
     except Exception as e:
         print e
 
 
-# Finder 的最近访问列表与一般应用的存储方式不同，需特别处理
+# for 10.11, 10.12
+def ParseSFL(MRUFile):
+    itemsLinkList = []
+    try:
+        plistfile = open(MRUFile, "rb")
+        plist = ccl_bplist.load(plistfile)
+        plistfile.close()
+        plist_objects = ccl_bplist.deserialise_NsKeyedArchiver(plist, parse_whole_structure=True)
+
+        if plist_objects["root"]["NS.keys"][2] == "items":
+            items = plist_objects["root"]["NS.objects"][2]["NS.objects"]
+            for n, item in enumerate(items):
+                if "bookmark" in item:
+                    itemLink = BLOBParser_human(item["bookmark"])
+                itemsLinkList.append(itemLink)
+    except Exception as e:
+        print e
+
+
+# for Finder
 def ParseFinderPlist(MRUFile):
     itemsLinkList = []
     try:
@@ -77,25 +97,41 @@ def ParseFinderPlist(MRUFile):
         print e
 
 
-if __name__ == '__main__':
-    filePath = sys.argv[1]
+# for Sublime Text 3
+def ParseSublimeText3Session(sessionFile):
+    with open(sys.argv[1]) as ff:
+        jsonObj = json.load(ff)
+    itemsLinkList = jsonObj["settings"]["new_window_settings"]["file_history"][0:15]
+    return itemsLinkList
 
-    if filePath.endswith(".sfl2"):
-        itemsLinkList = ParseSFL2(filePath)
-    # Finder 的最近访问列表与一般应用的存储方式不同，需特别处理
-    elif filePath.endswith("com.apple.finder.plist"):
-        itemsLinkList = ParseFinderPlist(filePath)
+
+if __name__ == '__main__':
+    allItemsLinkList = []
+    for filePath in sys.argv[1:]:
+        if filePath.endswith(".sfl2"):
+            itemsLinkList = ParseSFL2(filePath)
+        elif filePath.endswith("com.apple.finder.plist"):
+            itemsLinkList = ParseFinderPlist(filePath)
+        elif filePath.endswith(".sfl"):
+            itemsLinkList = ParseSFL(filePath)
+        elif filePath.endswith(".sublime_session"):
+            itemsLinkList = ParseSublimeText3Session(filePath)
+
+        allItemsLinkList.extend(itemsLinkList)
 
     result = {"items": []}
-    for item in itemsLinkList:
+    for item in allItemsLinkList:
+        # 滤除不存在的条目
         if not os.path.exists(item):
             continue
+        modifiedTimeSecNum = os.path.getmtime(item)
+        modifiedTime = time.strftime("%d/%m %H:%M", time.localtime(modifiedTimeSecNum))
         temp = {}
         temp["type"] = "file"
         temp["title"] = os.path.basename(item)
         temp["autocomplete"] = temp["title"]
         temp["icon"] = {"type": "fileicon", "path": item}
-        temp["subtitle"] = item
+        temp["subtitle"] = u"🕒 " + modifiedTime + u" 📡 " + item.replace(os.environ["HOME"], "~")
         temp["arg"] = item
         result['items'].append(temp)
     if result['items']:
