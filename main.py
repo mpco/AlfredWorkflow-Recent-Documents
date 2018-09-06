@@ -105,6 +105,23 @@ def ParseSublimeText3Session(sessionFile):
     return itemsLinkList
 
 
+def checkFilesInExcludedFolders(fileList):
+    folderListStr = os.environ["ExcludedFolders"]
+    folderList = folderListStr.split(":")
+    for folderPath in folderList:
+        folderPath = os.path.expanduser(folderPath)
+        if os.path.exists(folderPath) and os.path.isdir(folderPath):
+            # 为了防止 /xxx/xx 和 /xxx/xx x/xx 误判
+            if folderPath[-1] != "/":
+                folderPath += "/"
+            for i, filePath in enumerate(fileList):
+                if os.path.isdir(filePath):
+                    filePath += "/"
+                if filePath.startswith(folderPath):
+                    del fileList[i]
+    return fileList
+
+
 if __name__ == '__main__':
     allItemsLinkList = []
     for filePath in sys.argv[1:]:
@@ -116,8 +133,8 @@ if __name__ == '__main__':
             itemsLinkList = ParseSFL(filePath)
         elif filePath.endswith(".sublime_session"):
             itemsLinkList = ParseSublimeText3Session(filePath)
-
         allItemsLinkList.extend(itemsLinkList)
+    allItemsLinkList = checkFilesInExcludedFolders(allItemsLinkList)
 
     result = {"items": []}
     for item in allItemsLinkList:

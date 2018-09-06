@@ -10,7 +10,10 @@ It should work on 10.11 and 10.12, but no test.
 
 ## Usage
 
+You can press `Enter` to open the file in result, or press `⌘CMD-Enter` to reveal it in Finder.
+
 ### Tap `rr` to list files opened recently by the foremost app.
+
 For example:
 
 - Recent folders will be listed when Finder is foremost.
@@ -38,7 +41,13 @@ These files were recently opened by user, not like `rr` which is just for the fo
 
 ![ra](https://user-images.githubusercontent.com/3690653/45076634-7a5ec800-b11d-11e8-9e1c-f16ac17875fb.png)
 
-You can press `Enter` to open the file in result, or press `⌘CMD-Enter` to reveal it in Finder.
+### Exclude folders from the results.
+
+You can add private folder pathes separated by colon `:` to the Workflow Environment Variable `ExcludedFolders`. The results will not show private folders and any files inside them.
+
+For example: `~/privateFolder1/:/Users/G/privateFolder2/`
+
+![excludedfolders](https://user-images.githubusercontent.com/3690653/45142715-c1b38a00-b1eb-11e8-9ace-3abeeb99f425.png)
 
 ### Optional Setup
 

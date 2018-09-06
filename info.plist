@@ -209,6 +209,54 @@ fi</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
+				<string>rf</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>sfl2File="${HOME}/Library/Preferences/com.apple.finder.plist"
+/usr/bin/python main.py "${sfl2File}"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Tap "rff" to show</string>
+				<key>title</key>
+				<string>Recent folder</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>B6340DCC-2D0D-4367-BAC9-C1D922545CB0</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
 				<string>rd</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
@@ -247,54 +295,6 @@ fi</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>alfredfiltersresults</key>
-				<true/>
-				<key>alfredfiltersresultsmatchmode</key>
-				<integer>0</integer>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>keyword</key>
-				<string>rf</string>
-				<key>queuedelaycustom</key>
-				<integer>3</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<true/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string></string>
-				<key>script</key>
-				<string>sfl2File="${HOME}/Library/Preferences/com.apple.finder.plist"
-/usr/bin/python main.py "${sfl2File}"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string>Tap "rff" to show</string>
-				<key>title</key>
-				<string>Recent folder</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>B6340DCC-2D0D-4367-BAC9-C1D922545CB0</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string>Website: https://github.com/mpco/Alfred3-workflow-recent-documents</string>
@@ -303,7 +303,7 @@ fi</string>
 		<key>9F8BAD89-AA36-49E3-AC08-2F634A88C595</key>
 		<dict>
 			<key>xpos</key>
-			<integer>640</integer>
+			<integer>660</integer>
 			<key>ypos</key>
 			<integer>190</integer>
 		</dict>
@@ -312,40 +312,49 @@ fi</string>
 			<key>note</key>
 			<string>Recent Apps</string>
 			<key>xpos</key>
-			<integer>80</integer>
+			<integer>130</integer>
 			<key>ypos</key>
-			<integer>80</integer>
+			<integer>100</integer>
 		</dict>
 		<key>B6340DCC-2D0D-4367-BAC9-C1D922545CB0</key>
 		<dict>
 			<key>note</key>
 			<string>Recent Folders</string>
 			<key>xpos</key>
-			<integer>270</integer>
+			<integer>320</integer>
 			<key>ypos</key>
-			<integer>260</integer>
+			<integer>280</integer>
 		</dict>
 		<key>D172CEA8-0DE7-4AA2-BBDA-7819B2252316</key>
 		<dict>
 			<key>note</key>
 			<string>Recent Documents</string>
 			<key>xpos</key>
-			<integer>80</integer>
+			<integer>130</integer>
 			<key>ypos</key>
-			<integer>260</integer>
+			<integer>280</integer>
 		</dict>
 		<key>FEEBCB26-E74C-411D-9DC4-B8E92B0A9DA8</key>
 		<dict>
 			<key>note</key>
 			<string>Foremost App's Recent Documents</string>
 			<key>xpos</key>
-			<integer>270</integer>
+			<integer>320</integer>
 			<key>ypos</key>
-			<integer>80</integer>
+			<integer>100</integer>
 		</dict>
 	</dict>
+	<key>variables</key>
+	<dict>
+		<key>ExcludedFolders</key>
+		<string>~/DEVONthink/</string>
+	</dict>
+	<key>variablesdontexport</key>
+	<array>
+		<string>ExcludedFolders</string>
+	</array>
 	<key>version</key>
-	<string>2.0</string>
+	<string>2.1</string>
 	<key>webaddress</key>
 	<string>https://github.com/mpco/Alfred3-workflow-recent-documents</string>
 </dict>
