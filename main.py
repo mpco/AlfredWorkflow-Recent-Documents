@@ -67,9 +67,13 @@ def ParseSFL(MRUFile):
         if plist_objects["root"]["NS.keys"][2] == "items":
             items = plist_objects["root"]["NS.objects"][2]["NS.objects"]
             for n, item in enumerate(items):
-                if "bookmark" in item:
-                    itemLink = BLOBParser_human(item["bookmark"])
-                itemsLinkList.append(itemLink)
+                # item["URL"]['NS.relative'] file:///xxx/xxx/xxx
+                filePath = item["URL"]['NS.relative'][7:]
+                # /xxx/xxx/xxx/ the last "/" make basename func not work
+                if filePath[-1] == '/':
+                    filePath = filePath[:-1]
+                itemsLinkList.append(filePath)
+            return itemsLinkList
     except Exception as e:
         print e
 
@@ -91,6 +95,9 @@ def ParseFinderPlist(MRUFile):
             elif "file-data" in item:
                 blob = item["file-data"]["_CFURLAliasData"]
             itemLink = BLOBParser_human(blob)
+            # exclude / path
+            if itemLink == "/":
+                continue
             itemsLinkList.append(itemLink)
         return itemsLinkList
     except Exception as e:

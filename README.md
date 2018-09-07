@@ -3,8 +3,8 @@
 This workflow can list documents and apps opened recently.    
 Especially, it can list files opened recently by the foremost app.
 
-System: macOS 10.13+    
-It should work on 10.11 and 10.12, but no test.
+System: macOS 10.11+    
+No test for 10.11
 
 [Download](https://github.com/mpco/Alfred3-workflow-recent-documents/releases) [中文说明](https://github.com/mpco/Alfred3-workflow-recent-documents/blob/master/README_CN.md)
 

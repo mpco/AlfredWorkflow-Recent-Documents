@@ -97,7 +97,14 @@
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>/usr/bin/python main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentApplications.sfl2"</string>
+				<string>macOSVersion=$(sw_vers -productVersion | cut -d '.' -f 1,2)
+
+if [ "$macOSVersion" = "10.14" ] || [ "$macOSVersion" = "10.13" ]; then
+    /usr/bin/python main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentApplications.sfl2"
+elif [ "$macOSVersion" = "10.11" ] || [ "$macOSVersion" = "10.12" ]; then
+    /usr/bin/python main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentApplications.sfl"
+fi
+</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -144,19 +151,28 @@
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>currentAppID=$(osascript -e "tell application (path to frontmost application as text) to get id")
+				<string>
+# check macos version
+macOSVersion=$(sw_vers -productVersion | cut -d '.' -f 1,2)
+if [ "$macOSVersion" = "10.14" ] || [ "$macOSVersion" = "10.13" ]; then
+    MRUfileExt="sfl2"
+elif [ "$macOSVersion" = "10.11" ] || [ "$macOSVersion" = "10.12" ]; then
+    MRUfileExt="sfl"
+fi
 
+# check app
+currentAppID=$(osascript -e "tell application (path to frontmost application as text) to get id")
 if [ "${currentAppID}" = "com.apple.finder" ]; then
-    sfl2File="${HOME}/Library/Preferences/com.apple.finder.plist"
+    MRUfile="${HOME}/Library/Preferences/com.apple.finder.plist"
 elif [ "${currentAppID}" = "com.sublimetext.3" ]; then
-    sfl2File="${HOME}/Library/Application Support/Sublime Text 3/Local/Auto Save Session.sublime_session"
+    MRUfile="${HOME}/Library/Application Support/Sublime Text 3/Local/Auto Save Session.sublime_session"
 else
-    sfl2File="${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/${currentAppID}.sfl2"
+    MRUfile="${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/${currentAppID}.${MRUfileExt}"
 fi
 
 
-if [ -f "${sfl2File}" ]; then
-    /usr/bin/python main.py "${sfl2File}"
+if [ -f "${MRUfile}" ]; then
+    /usr/bin/python main.py "${MRUfile}"
 else
     echo '{"items": [{"title": "None Recent Record for the foremost app","subtitle": "(*´･д･)?"}]}'
 fi</string>
@@ -209,54 +225,6 @@ fi</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>rf</string>
-				<key>queuedelaycustom</key>
-				<integer>3</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<true/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string></string>
-				<key>script</key>
-				<string>sfl2File="${HOME}/Library/Preferences/com.apple.finder.plist"
-/usr/bin/python main.py "${sfl2File}"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string>Tap "rff" to show</string>
-				<key>title</key>
-				<string>Recent folder</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>B6340DCC-2D0D-4367-BAC9-C1D922545CB0</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>alfredfiltersresults</key>
-				<true/>
-				<key>alfredfiltersresultsmatchmode</key>
-				<integer>0</integer>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>keyword</key>
 				<string>rd</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
@@ -269,11 +237,13 @@ fi</string>
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string># cd "${HOME}/Library/Application Support/com.apple.sharedfilelist/"
-# get top 10 files modified in last 3 day and sorted by time
-# fileList=$(find . -mtime -3 -name "*.sfl2" -print0 | xargs -0 ls -t | head -10)
+				<string>macOSVersion=$(sw_vers -productVersion | cut -d '.' -f 1,2)
 
-/usr/bin/python main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentDocuments.sfl2"
+if [ "$macOSVersion" = "10.14" ] || [ "$macOSVersion" = "10.13" ]; then
+    /usr/bin/python main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentDocuments.sfl2"
+elif [ "$macOSVersion" = "10.11" ] || [ "$macOSVersion" = "10.12" ]; then
+    /usr/bin/python main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentDocuments.sfl"
+fi
 </string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
@@ -292,6 +262,54 @@ fi</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>D172CEA8-0DE7-4AA2-BBDA-7819B2252316</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>rf</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>/usr/bin/python main.py "${HOME}/Library/Preferences/com.apple.finder.plist"
+</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Tap "rff" to show</string>
+				<key>title</key>
+				<string>Recent folder</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>B6340DCC-2D0D-4367-BAC9-C1D922545CB0</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -354,7 +372,7 @@ fi</string>
 		<string>ExcludedFolders</string>
 	</array>
 	<key>version</key>
-	<string>2.1</string>
+	<string>2.2</string>
 	<key>webaddress</key>
 	<string>https://github.com/mpco/Alfred3-workflow-recent-documents</string>
 </dict>

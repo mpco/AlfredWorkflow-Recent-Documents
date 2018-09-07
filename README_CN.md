@@ -3,8 +3,8 @@
 快速打开最近访问的文档、文件夹、应用。     
 快速打开当前应用的最近访问文件。
 
-系统要求：macOS 10.13+。    
-对于 10.11、10.12 理论上可用，未测试。
+系统要求：macOS 10.11+。    
+10.11 未测试
 
 [下载 Workflow](https://github.com/mpco/Alfred3-workflow-recent-documents/releases)
 
