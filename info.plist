@@ -8,6 +8,58 @@
 	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
+		<key>242EA50D-B03A-4278-A412-B4AFC16AC51F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>FEEBCB26-E74C-411D-9DC4-B8E92B0A9DA8</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>53BF5810-7308-4550-A1C3-92DC01964658</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>B6340DCC-2D0D-4367-BAC9-C1D922545CB0</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>5459E1D5-34AA-4E81-AAC7-8D52C4077AE9</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D172CEA8-0DE7-4AA2-BBDA-7819B2252316</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>79D60C12-3480-4744-93FD-5B6AA769F31A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>B4CFDC4F-AF3F-47C2-8100-476F7E6FF72E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>B4CFDC4F-AF3F-47C2-8100-476F7E6FF72E</key>
 		<array>
 			<dict>
@@ -74,6 +126,37 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>hotstring</key>
+				<string></string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>79D60C12-3480-4744-93FD-5B6AA769F31A</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -122,6 +205,52 @@ fi
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>B4CFDC4F-AF3F-47C2-8100-476F7E6FF72E</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>openwith</key>
+				<string></string>
+				<key>sourcefile</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openfile</string>
+			<key>uid</key>
+			<string>9F8BAD89-AA36-49E3-AC08-2F634A88C595</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>hotstring</key>
+				<string></string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>242EA50D-B03A-4278-A412-B4AFC16AC51F</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -199,21 +328,6 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>openwith</key>
-				<string></string>
-				<key>sourcefile</key>
-				<string></string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.openfile</string>
-			<key>uid</key>
-			<string>9F8BAD89-AA36-49E3-AC08-2F634A88C595</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -268,6 +382,37 @@ fi
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>hotstring</key>
+				<string></string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>5459E1D5-34AA-4E81-AAC7-8D52C4077AE9</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -313,53 +458,112 @@ fi
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>hotstring</key>
+				<string></string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>53BF5810-7308-4550-A1C3-92DC01964658</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>Website: https://github.com/mpco/Alfred3-workflow-recent-documents</string>
 	<key>uidata</key>
 	<dict>
+		<key>242EA50D-B03A-4278-A412-B4AFC16AC51F</key>
+		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
+			<key>ypos</key>
+			<integer>210</integer>
+		</dict>
+		<key>53BF5810-7308-4550-A1C3-92DC01964658</key>
+		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
+			<key>ypos</key>
+			<integer>540</integer>
+		</dict>
+		<key>5459E1D5-34AA-4E81-AAC7-8D52C4077AE9</key>
+		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
+			<key>ypos</key>
+			<integer>380</integer>
+		</dict>
+		<key>79D60C12-3480-4744-93FD-5B6AA769F31A</key>
+		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
+			<key>ypos</key>
+			<integer>50</integer>
+		</dict>
 		<key>9F8BAD89-AA36-49E3-AC08-2F634A88C595</key>
 		<dict>
 			<key>xpos</key>
-			<integer>660</integer>
+			<integer>610</integer>
 			<key>ypos</key>
-			<integer>190</integer>
+			<integer>50</integer>
 		</dict>
 		<key>B4CFDC4F-AF3F-47C2-8100-476F7E6FF72E</key>
 		<dict>
 			<key>note</key>
 			<string>Recent Apps</string>
 			<key>xpos</key>
-			<integer>130</integer>
+			<integer>270</integer>
 			<key>ypos</key>
-			<integer>100</integer>
+			<integer>50</integer>
 		</dict>
 		<key>B6340DCC-2D0D-4367-BAC9-C1D922545CB0</key>
 		<dict>
 			<key>note</key>
 			<string>Recent Folders</string>
 			<key>xpos</key>
-			<integer>320</integer>
+			<integer>270</integer>
 			<key>ypos</key>
-			<integer>280</integer>
+			<integer>540</integer>
 		</dict>
 		<key>D172CEA8-0DE7-4AA2-BBDA-7819B2252316</key>
 		<dict>
 			<key>note</key>
 			<string>Recent Documents</string>
 			<key>xpos</key>
-			<integer>130</integer>
+			<integer>270</integer>
 			<key>ypos</key>
-			<integer>280</integer>
+			<integer>380</integer>
 		</dict>
 		<key>FEEBCB26-E74C-411D-9DC4-B8E92B0A9DA8</key>
 		<dict>
 			<key>note</key>
 			<string>Foremost App's Recent Documents</string>
 			<key>xpos</key>
-			<integer>320</integer>
+			<integer>270</integer>
 			<key>ypos</key>
-			<integer>100</integer>
+			<integer>210</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -372,7 +576,7 @@ fi
 		<string>ExcludedFolders</string>
 	</array>
 	<key>version</key>
-	<string>2.2</string>
+	<string>2.3</string>
 	<key>webaddress</key>
 	<string>https://github.com/mpco/Alfred3-workflow-recent-documents</string>
 </dict>
