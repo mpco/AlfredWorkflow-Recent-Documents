@@ -12,7 +12,7 @@
 
 - 使用`上下方向键`或`Ctrl-Up/Down`或`文件名过滤`选择列表中的结果。
 - 对于中文文件名，支持拼音过滤。每个字的拼音之间需加空格。    
-  如`爱国教育.mp4`可用过滤词`ai guo jiao yu`。
+  如：`爱国教育.mp4`对应过滤语句`ai guo jiao yu .mp4`。[详细说明](https://github.com/mpco/Alfred3-workflow-recent-documents/releases/tag/2.5) 
 - 按下 回车键 打开搜索结果中的文件。
 - 按下 ⌘CMD+回车键 以在访达中显示文件。
 
