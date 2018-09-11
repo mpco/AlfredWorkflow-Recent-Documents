@@ -180,12 +180,15 @@
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>macOSVersion=$(sw_vers -productVersion | cut -d '.' -f 1,2)
+				<string># python -O xxx.py, run
+# python xxx.py, debug
+
+macOSVersion=$(sw_vers -productVersion | cut -d '.' -f 1,2)
 
 if [ "$macOSVersion" = "10.14" ] || [ "$macOSVersion" = "10.13" ]; then
-    /usr/bin/python main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentApplications.sfl2"
+    /usr/bin/python -O main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentApplications.sfl2"
 elif [ "$macOSVersion" = "10.11" ] || [ "$macOSVersion" = "10.12" ]; then
-    /usr/bin/python main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentApplications.sfl"
+    /usr/bin/python -O main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentApplications.sfl"
 fi
 </string>
 				<key>scriptargtype</key>
@@ -293,6 +296,8 @@ fi
 currentAppID=$(osascript -e "tell application (path to frontmost application as text) to get id")
 if [ "${currentAppID}" = "com.apple.finder" ]; then
     MRUfile="${HOME}/Library/Preferences/com.apple.finder.plist"
+elif [ "${currentAppID}" = "com.microsoft.Word" ] || [ "${currentAppID}" = "com.microsoft.Powerpoint" ] || [ "${currentAppID}" = "com.microsoft.Excel" ] ; then
+    MRUfile="${HOME}/Library/Containers/${currentAppID}/Data/Library/Preferences/${currentAppID}.securebookmarks.plist"
 elif [ "${currentAppID}" = "com.sublimetext.3" ]; then
     MRUfile="${HOME}/Library/Application Support/Sublime Text 3/Local/Auto Save Session.sublime_session"
 else
@@ -301,7 +306,7 @@ fi
 
 
 if [ -f "${MRUfile}" ]; then
-    /usr/bin/python main.py "${MRUfile}"
+    /usr/bin/python -O main.py "${MRUfile}"
 else
     echo '{"items": [{"title": "None Recent Record for the foremost app","subtitle": "(*´･д･)?"}]}'
 fi</string>
@@ -354,9 +359,9 @@ fi</string>
 				<string>macOSVersion=$(sw_vers -productVersion | cut -d '.' -f 1,2)
 
 if [ "$macOSVersion" = "10.14" ] || [ "$macOSVersion" = "10.13" ]; then
-    /usr/bin/python main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentDocuments.sfl2"
+    /usr/bin/python -O main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentDocuments.sfl2"
 elif [ "$macOSVersion" = "10.11" ] || [ "$macOSVersion" = "10.12" ]; then
-    /usr/bin/python main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentDocuments.sfl"
+    /usr/bin/python -O main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentDocuments.sfl"
 fi
 </string>
 				<key>scriptargtype</key>
@@ -436,7 +441,7 @@ fi
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>/usr/bin/python main.py "${HOME}/Library/Preferences/com.apple.finder.plist"
+				<string>/usr/bin/python -O main.py "${HOME}/Library/Preferences/com.apple.finder.plist"
 </string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
@@ -576,7 +581,7 @@ fi
 		<string>ExcludedFolders</string>
 	</array>
 	<key>version</key>
-	<string>2.3</string>
+	<string>2.4</string>
 	<key>webaddress</key>
 	<string>https://github.com/mpco/Alfred3-workflow-recent-documents</string>
 </dict>
