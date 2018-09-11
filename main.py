@@ -5,9 +5,11 @@
 # https://www.mac4n6.com/blog/2017/10/17/script-update-for-macmrupy-v13-new-1013-sfl2-mru-files
 
 import os
+import re
 import sys
 import json
 import time
+import pinyin
 import plistlib
 import ccl_bplist
 from urllib import unquote
@@ -131,6 +133,15 @@ def checkFilesInExcludedFolders(fileList):
     return fileList
 
 
+# convert "abc你好def" to "abc ni hao def"
+def convert2Pinyin(filename):
+    # convert "你好" to " ni hao "
+    def c2p(matchObj):
+        return " " + pinyin.get(matchObj.group(), format="strip", delimiter=" ") + " "
+    # replace chinese character with pinyin
+    return re.sub(ur'[\u4e00-\u9fff]+', c2p, filename)
+
+
 if __name__ == '__main__':
     allItemsLinkList = []
     for filePath in sys.argv[1:]:
@@ -153,7 +164,7 @@ if __name__ == '__main__':
     allItemsLinkList = checkFilesInExcludedFolders(allItemsLinkList)
 
     result = {"items": []}
-    for item in allItemsLinkList:
+    for n, item in enumerate(allItemsLinkList):
         # remove records of file not exist
         if not os.path.exists(item):
             continue
@@ -164,6 +175,7 @@ if __name__ == '__main__':
         temp["type"] = "file"
         temp["title"] = os.path.basename(item)
         temp["autocomplete"] = temp["title"]
+        temp["match"] = convert2Pinyin(temp["title"])
         temp["icon"] = {"type": "fileicon", "path": item}
         temp["subtitle"] = u"🕒 " + modifiedTime + \
             u" 📡 " + item.replace(os.environ["HOME"], "~")
