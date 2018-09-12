@@ -36,14 +36,10 @@ ALIAS_EJECTABLE_DISK = 5
 ALIAS_NO_CNID = 0xffffffff
 
 def encode_utf8(s):
-    if isinstance(s, bytes):
-        return s
-    return s.encode('utf-8')
+    return s if isinstance(s, bytes) else s.encode('utf-8')
 
 def decode_utf8(s):
-    if isinstance(s, bytes):
-        return s.decode('utf-8')
-    return s
+    return s.decode('utf-8') if isinstance(s, bytes) else s
 
 class AppleShareInfo (object):
     def __init__(self, zone=None, server=None, user=None):
@@ -112,10 +108,7 @@ class VolumeInfo (object):
     def __repr__(self):
         args = ['name', 'creation_date', 'fs_type', 'disk_type',
                 'attribute_flags', 'fs_id']
-        values = []
-        for a in args:
-            v = getattr(self, a)
-            values.append(repr(v))
+        values = [repr(getattr(self, arg)) for arg in args]
             
         kwargs = ['appleshare_info', 'driver_name', 'posix_path',
                   'disk_image_alias', 'dialup_info', 'network_mount_info']
@@ -180,10 +173,7 @@ class TargetInfo (object):
     def __repr__(self):
         args = ['kind', 'filename', 'folder_cnid', 'cnid', 'creation_date',
                 'creator_code', 'type_code']
-        values = []
-        for a in args:
-            v = getattr(self, a)
-            values.append(repr(v))
+        values = [repr(getattr(self, arg)) for arg in args]
 
         if self.levels_from != -1:
             values.append('levels_from=%r' % self.levels_from)
@@ -364,17 +354,15 @@ class Alias (object):
                   | osx.ATTR_CMN_PARENTID), 0, 0, 0, 0]
         info = osx.getattrlist(path, attrs, osx.FSOPT_NOFOLLOW)
 
-        if info[0] == osx.VDIR:
-            kind = ALIAS_KIND_FOLDER
-        else:
-            kind = ALIAS_KIND_FILE
+        
+        kind = ALIAS_KIND_FOLDER if info[0] == osx.VDIR else ALIAS_KIND_FILE
 
         cnid = info[3]
         folder_cnid = info[4]
         
         dirname, filename = os.path.split(path)
 
-        if dirname == b'' or dirname == b'.':
+        if dirname in (b'', b'.'):
             dirname = os.getcwd()
 
         foldername = os.path.basename(dirname)
@@ -399,10 +387,7 @@ class Alias (object):
         rel_path = os.path.relpath(path, vol_path)
 
         # Leave off the initial '/' if vol_path is '/' (no idea why)
-        if vol_path == b'/':
-            a.target.posix_path = rel_path
-        else:
-            a.target.posix_path = b'/' + rel_path
+        a.target.posix_path = rel_path if vol_path == b'/' else b'/' + rel_path
 
         # Construct the Carbon and CNID paths
         carbon_path = []
