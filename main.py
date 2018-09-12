@@ -29,17 +29,13 @@ def BLOBParser_human(blob):
 def ParseSFL2(MRUFile):
     itemsLinkList = []
     try:
-        plistfile = open(MRUFile, "rb")
-        plist = ccl_bplist.load(plistfile)
-        plistfile.close()
+        with open(MRUFile, "rb") as plistfile:
+            plist = ccl_bplist.load(plistfile)
         plist_objects = ccl_bplist.deserialise_NsKeyedArchiver(
             plist, parse_whole_structure=True)
         if plist_objects["root"]["NS.keys"][0] == "items":
-            items = plist_objects["root"]["NS.objects"][0]["NS.objects"]
-            for n, item in enumerate(items):
-                attribute_keys = plist_objects["root"]["NS.objects"][0]["NS.objects"][n]["NS.keys"]
-                attribute_values = plist_objects["root"]["NS.objects"][0]["NS.objects"][n]["NS.objects"]
-                attributes = dict(zip(attribute_keys, attribute_values))
+            for item in plist_objects["root"]["NS.objects"][0]["NS.objects"]:
+                attributes = dict(zip(item["NS.keys"], item["NS.objects"]))
                 if "Bookmark" in attributes:
                     if isinstance(attributes["Bookmark"], str):
                         itemLink = BLOBParser_human(attributes["Bookmark"])
@@ -56,9 +52,8 @@ def ParseSFL2(MRUFile):
 def ParseSFL(MRUFile):
     itemsLinkList = []
     try:
-        plistfile = open(MRUFile, "rb")
-        plist = ccl_bplist.load(plistfile)
-        plistfile.close()
+        with open(MRUFile, "rb") as plistfile:
+            plist = ccl_bplist.load(plistfile)
         plist_objects = ccl_bplist.deserialise_NsKeyedArchiver(
             plist, parse_whole_structure=True)
         if plist_objects["root"]["NS.keys"][2] == "items":
@@ -79,9 +74,8 @@ def ParseSFL(MRUFile):
 def ParseFinderPlist(MRUFile):
     itemsLinkList = []
     try:
-        plistfile = open(MRUFile, "rb")
-        plist = ccl_bplist.load(plistfile)
-        plistfile.close()
+        with open(MRUFile, "rb") as plistfile:
+            plist = ccl_bplist.load(plistfile)
         for item in plist["FXRecentFolders"]:
             if "file-bookmark" in item:
                 blob = item["file-bookmark"]
@@ -171,14 +165,15 @@ if __name__ == '__main__':
         modifiedTimeSecNum = os.path.getmtime(item)
         modifiedTime = time.strftime(
             "%d/%m %H:%M", time.localtime(modifiedTimeSecNum))
-        temp = {}
-        temp["type"] = "file"
-        temp["title"] = os.path.basename(item)
-        temp["autocomplete"] = temp["title"]
-        temp["match"] = convert2Pinyin(temp["title"])
-        temp["icon"] = {"type": "fileicon", "path": item}
-        temp["subtitle"] = u"🕒 " + modifiedTime + \
+        temp = {
+            "type": "file",
+            "title": os.path.basename(item),
+            "autocomplete": temp["title"],
+            "match": convert2Pinyin(temp["title"]),
+            "icon: {"type": "fileicon", "path": item}
+            "subtitle": u"🕒 " + modifiedTime + \
             u" 📡 " + item.replace(os.environ["HOME"], "~")
+        }
         temp["arg"] = item
         result['items'].append(temp)
     if result['items']:
