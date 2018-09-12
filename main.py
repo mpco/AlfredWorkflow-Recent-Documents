@@ -163,18 +163,17 @@ if __name__ == '__main__':
         if not os.path.exists(item):
             continue
         modifiedTimeSecNum = os.path.getmtime(item)
-        modifiedTime = time.strftime(
-            "%d/%m %H:%M", time.localtime(modifiedTimeSecNum))
+        modifiedTime = time.strftime("%d/%m %H:%M", time.localtime(modifiedTimeSecNum))
+        filename = os.path.basename(item)
         temp = {
             "type": "file",
-            "title": os.path.basename(item),
-            "autocomplete": temp["title"],
-            "match": convert2Pinyin(temp["title"]),
-            "icon: {"type": "fileicon", "path": item}
-            "subtitle": u"🕒 " + modifiedTime + \
-            u" 📡 " + item.replace(os.environ["HOME"], "~")
+            "title": filename,
+            "autocomplete": filename,
+            "match": convert2Pinyin(filename),
+            "icon": {"type": "fileicon", "path": item},
+            "subtitle": u"🕒 " + modifiedTime + u" 📡 " + item.replace(os.environ["HOME"], "~"),
+            "arg": item
         }
-        temp["arg"] = item
         result['items'].append(temp)
     if result['items']:
         print(json.dumps(result))
