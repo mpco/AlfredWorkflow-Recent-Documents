@@ -22,7 +22,7 @@ def BLOBParser_human(blob):
         b = Bookmark.from_bytes(blob)
         return "/" + u"/".join(b.get(0x1004, default=None))
     except Exception as e:
-        print e
+        print(e)
 
 
 # for 10.13
@@ -72,7 +72,7 @@ def ParseSFL(MRUFile):
                 itemsLinkList.append(filePath)
             return itemsLinkList
     except Exception as e:
-        print e
+        print(e)
 
 
 # for Finder
@@ -94,7 +94,7 @@ def ParseFinderPlist(MRUFile):
             itemsLinkList.append(itemLink)
         return itemsLinkList
     except Exception as e:
-        print e
+        print(e)
 
 
 # for Sublime Text 3
@@ -113,7 +113,7 @@ def ParseMSOffice2016Plist(MRUFile):
             itemsLinkList.append(unquote(item[7:]).decode('utf8'))
         return itemsLinkList
     except Exception as e:
-        print e
+        print(e)
 
 
 def checkFilesInExcludedFolders(fileList):
@@ -182,7 +182,7 @@ if __name__ == '__main__':
         temp["arg"] = item
         result['items'].append(temp)
     if result['items']:
-        print json.dumps(result)
+        print(json.dumps(result))
     else:
         # when result list is empty
-        print '{"items": [{"title": "None Recent Record","subtitle": "(*´･д･)?"}]}'
+        print('{"items": [{"title": "None Recent Record","subtitle": "(*´･д･)?"}]}')
