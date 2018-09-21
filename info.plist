@@ -299,7 +299,12 @@ if [ "${currentAppID}" = "com.apple.finder" ]; then
 elif [ "${currentAppID}" = "com.microsoft.Word" ] || [ "${currentAppID}" = "com.microsoft.Powerpoint" ] || [ "${currentAppID}" = "com.microsoft.Excel" ] ; then
     MRUfile="${HOME}/Library/Containers/${currentAppID}/Data/Library/Preferences/${currentAppID}.securebookmarks.plist"
 elif [ "${currentAppID}" = "com.sublimetext.3" ]; then
-    MRUfile="${HOME}/Library/Application Support/Sublime Text 3/Local/Auto Save Session.sublime_session"
+    AutoSaveSessionFile="${HOME}/Library/Application Support/Sublime Text 3/Local/Auto Save Session.sublime_session"
+    if [ -f "$AutoSaveSessionFile" ]; then
+        MRUfile="$AutoSaveSessionFile"
+    else
+        MRUfile="${HOME}/Library/Application Support/Sublime Text 3/Local/Session.sublime_session"
+    fi
 else
     MRUfile="${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/${currentAppID}.${MRUfileExt}"
 fi
@@ -581,7 +586,7 @@ fi
 		<string>ExcludedFolders</string>
 	</array>
 	<key>version</key>
-	<string>2.5</string>
+	<string>2.6</string>
 	<key>webaddress</key>
 	<string>https://github.com/mpco/Alfred3-workflow-recent-documents</string>
 </dict>
