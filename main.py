@@ -163,7 +163,7 @@ if __name__ == '__main__':
         if not os.path.exists(item):
             continue
         modifiedTimeSecNum = os.path.getmtime(item)
-        modifiedTime = time.strftime("%d/%m %H:%M", time.localtime(modifiedTimeSecNum))
+        modifiedTime = time.strftime("%m-%d %H:%M", time.localtime(modifiedTimeSecNum))
         filename = os.path.basename(item)
         temp = {
             "type": "file",

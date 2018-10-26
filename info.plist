@@ -579,14 +579,14 @@ fi
 	<key>variables</key>
 	<dict>
 		<key>ExcludedFolders</key>
-		<string>~/DEVONthink/</string>
+		<string>~/DEVONthink/:/System/Library/PreferencePanes/</string>
 	</dict>
 	<key>variablesdontexport</key>
 	<array>
 		<string>ExcludedFolders</string>
 	</array>
 	<key>version</key>
-	<string>2.6</string>
+	<string>2.7</string>
 	<key>webaddress</key>
 	<string>https://github.com/mpco/Alfred3-workflow-recent-documents</string>
 </dict>
