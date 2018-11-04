@@ -169,7 +169,7 @@ if __name__ == '__main__':
             "type": "file",
             "title": filename,
             "autocomplete": filename,
-            "match": convert2Pinyin(filename),
+            "match": filename + " " + convert2Pinyin(filename),
             "icon": {"type": "fileicon", "path": item},
             "subtitle": u"🕒 " + modifiedTime + u" 📡 " + item.replace(os.environ["HOME"], "~"),
             "arg": item
