@@ -111,20 +111,21 @@ def ParseMSOffice2016Plist(MRUFile):
 
 
 def checkFilesInExcludedFolders(fileList):
+    newFileList = []
     folderListStr = os.environ["ExcludedFolders"]
     folderList = folderListStr.split(":")
     for folderPath in folderList:
         folderPath = os.path.expanduser(folderPath)
         if os.path.exists(folderPath) and os.path.isdir(folderPath):
-            # distinguish "/xxx/xx" and "/xxx/xx x/xx"
+            # change "/xxx/xx" to "/xxx/xx/" for distinguish "/xxx/xx" and "/xxx/xx x/xx"
             if folderPath[-1] != "/":
                 folderPath += "/"
-            for i, filePath in enumerate(fileList):
-                if os.path.isdir(filePath):
-                    filePath += "/"
-                if filePath.startswith(folderPath):
-                    del fileList[i]
-    return fileList
+            for filePath in fileList:
+                # change "/xxx/xx" to "/xxx/xx/" for comparing folderPath "/xxx/xx/" and filePath "/xxx/xx"
+                fileFullPath = (filePath + "/") if os.path.isdir(filePath) else filePath
+                if not fileFullPath.startswith(folderPath):
+                    newFileList.append(filePath)
+    return newFileList
 
 
 # convert "abc你好def" to "abc ni hao def"
