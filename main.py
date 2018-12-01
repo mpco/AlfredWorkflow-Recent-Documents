@@ -113,6 +113,9 @@ def ParseMSOffice2016Plist(MRUFile):
 def checkFilesInExcludedFolders(fileList):
     newFileList = []
     folderListStr = os.environ["ExcludedFolders"]
+    # ExcludedFolders is unset
+    if not folderListStr:
+        return fileList
     folderList = folderListStr.split(":")
     for folderPath in folderList:
         folderPath = os.path.expanduser(folderPath)

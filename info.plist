@@ -586,7 +586,7 @@ fi
 		<string>ExcludedFolders</string>
 	</array>
 	<key>version</key>
-	<string>2.8</string>
+	<string>2.8.2</string>
 	<key>webaddress</key>
 	<string>https://github.com/mpco/Alfred3-workflow-recent-documents</string>
 </dict>
