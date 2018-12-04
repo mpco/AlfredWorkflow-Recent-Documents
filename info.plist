@@ -60,6 +60,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>A46BBC3D-A323-49F8-90F1-A58975C5AF06</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>9F8BAD89-AA36-49E3-AC08-2F634A88C595</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>B4CFDC4F-AF3F-47C2-8100-476F7E6FF72E</key>
 		<array>
 			<dict>
@@ -103,7 +116,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>9F8BAD89-AA36-49E3-AC08-2F634A88C595</string>
+				<string>A46BBC3D-A323-49F8-90F1-A58975C5AF06</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -294,6 +307,7 @@ fi
 
 # check app
 currentAppID=$(osascript -e "tell application (path to frontmost application as text) to get id")
+export currentAppPath=$(osascript -e 'tell application "Finder" to get text 1 thru -2 of POSIX path of (path to frontmost application)')
 if [ "${currentAppID}" = "com.apple.finder" ]; then
     MRUfile="${HOME}/Library/Preferences/com.apple.finder.plist"
 elif [ "${currentAppID}" = "com.microsoft.Word" ] || [ "${currentAppID}" = "com.microsoft.Powerpoint" ] || [ "${currentAppID}" = "com.microsoft.Excel" ] ; then
@@ -332,6 +346,60 @@ fi</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>FEEBCB26-E74C-411D-9DC4-B8E92B0A9DA8</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>json</key>
+				<string>{
+  "alfredworkflow" : {
+    "arg" : "{query}",
+    "config" : {
+      "openwith" : "{var:currentAppPath}",
+      "sourcefile" : ""
+    },
+    "variables" : {
+    }
+  }
+}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.json</string>
+			<key>uid</key>
+			<string>A46BBC3D-A323-49F8-90F1-A58975C5AF06</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>hotstring</key>
+				<string></string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>5459E1D5-34AA-4E81-AAC7-8D52C4077AE9</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -416,7 +484,7 @@ fi
 			<key>type</key>
 			<string>alfred.workflow.trigger.hotkey</string>
 			<key>uid</key>
-			<string>5459E1D5-34AA-4E81-AAC7-8D52C4077AE9</string>
+			<string>53BF5810-7308-4550-A1C3-92DC01964658</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -468,37 +536,6 @@ fi
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>action</key>
-				<integer>0</integer>
-				<key>argument</key>
-				<integer>0</integer>
-				<key>focusedappvariable</key>
-				<false/>
-				<key>focusedappvariablename</key>
-				<string></string>
-				<key>hotkey</key>
-				<integer>0</integer>
-				<key>hotmod</key>
-				<integer>0</integer>
-				<key>hotstring</key>
-				<string></string>
-				<key>leftcursor</key>
-				<false/>
-				<key>modsmode</key>
-				<integer>0</integer>
-				<key>relatedAppsMode</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.hotkey</string>
-			<key>uid</key>
-			<string>53BF5810-7308-4550-A1C3-92DC01964658</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string>Website: https://github.com/mpco/Alfred3-workflow-recent-documents</string>
@@ -535,9 +572,16 @@ fi
 		<key>9F8BAD89-AA36-49E3-AC08-2F634A88C595</key>
 		<dict>
 			<key>xpos</key>
-			<integer>610</integer>
+			<integer>700</integer>
 			<key>ypos</key>
 			<integer>50</integer>
+		</dict>
+		<key>A46BBC3D-A323-49F8-90F1-A58975C5AF06</key>
+		<dict>
+			<key>xpos</key>
+			<integer>470</integer>
+			<key>ypos</key>
+			<integer>240</integer>
 		</dict>
 		<key>B4CFDC4F-AF3F-47C2-8100-476F7E6FF72E</key>
 		<dict>
@@ -586,7 +630,7 @@ fi
 		<string>ExcludedFolders</string>
 	</array>
 	<key>version</key>
-	<string>2.8.2</string>
+	<string>2.9</string>
 	<key>webaddress</key>
 	<string>https://github.com/mpco/Alfred3-workflow-recent-documents</string>
 </dict>

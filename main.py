@@ -161,7 +161,13 @@ if __name__ == '__main__':
         allItemsLinkList.extend(itemsLinkList)
     allItemsLinkList = checkFilesInExcludedFolders(allItemsLinkList)
 
-    result = {"items": []}
+    # use current app to open recent documents of current app
+    currentAppPath = os.getenv("currentAppPath")
+    if currentAppPath:
+        result = {"variables": {"currentAppPath": currentAppPath}, "items": []}
+    else:
+        result = {"items": []}
+
     for n, item in enumerate(allItemsLinkList):
         # remove records of file not exist
         if not os.path.exists(item):
