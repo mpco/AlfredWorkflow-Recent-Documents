@@ -112,22 +112,27 @@ def ParseMSOffice2016Plist(MRUFile):
 
 def checkFilesInExcludedFolders(fileList):
     newFileList = []
-    folderListStr = os.environ["ExcludedFolders"]
+    excludeFolderListStr = os.environ["ExcludedFolders"]
     # ExcludedFolders is unset
-    if not folderListStr:
+    if not excludeFolderListStr:
         return fileList
-    folderList = folderListStr.split(":")
-    for folderPath in folderList:
-        folderPath = os.path.expanduser(folderPath)
-        if os.path.exists(folderPath) and os.path.isdir(folderPath):
-            # change "/xxx/xx" to "/xxx/xx/" for distinguish "/xxx/xx" and "/xxx/xx x/xx"
-            if folderPath[-1] != "/":
-                folderPath += "/"
-            for filePath in fileList:
-                # change "/xxx/xx" to "/xxx/xx/" for comparing folderPath "/xxx/xx/" and filePath "/xxx/xx"
-                fileFullPath = (filePath + "/") if os.path.isdir(filePath) else filePath
-                if not fileFullPath.startswith(folderPath):
-                    newFileList.append(filePath)
+    excludeFolderList = excludeFolderListStr.split(":")
+    for filePath in fileList:
+        fileExclude = False
+        for exFolderPath in excludeFolderList:
+            exFolderPath = os.path.expanduser(exFolderPath)
+            if not os.path.isdir(exFolderPath):
+                continue
+            # change "/xxx/xx" to "/xxx/xx/"
+            # for distinguish "/xxx/xx" and "/xxx/xx x/xx"
+            if exFolderPath[-1] != "/":
+                exFolderPath += "/"
+            # change "/xxx/xx" to "/xxx/xx/" for comparing exFolderPath "/xxx/xx/" and filePath "/xxx/xx"
+            fileFullPath = (filePath + "/") if os.path.isdir(filePath) else filePath
+            if fileFullPath.startswith(exFolderPath):
+                fileExclude = True
+        if not fileExclude:
+            newFileList.append(filePath)
     return newFileList
 
 
