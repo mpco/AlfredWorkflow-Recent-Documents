@@ -184,7 +184,8 @@ if __name__ == '__main__':
             "type": "file",
             "title": filename,
             "autocomplete": filename,
-            "match": filename + " " + convert2Pinyin(filename),
+            # replace "." with space for searching filename extension
+            "match": filename.replace('.', ' ') + " " + convert2Pinyin(filename),
             "icon": {"type": "fileicon", "path": item},
             "subtitle": u"🕒 " + modifiedTime + u" 📡 " + item.replace(os.environ["HOME"], "~"),
             "arg": item

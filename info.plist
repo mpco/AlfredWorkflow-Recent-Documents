@@ -623,7 +623,7 @@ fi
 	<key>variables</key>
 	<dict>
 		<key>ExcludedFolders</key>
-		<string>~/DEVONthink/:/System/Library/PreferencePanes/</string>
+		<string>~/DEVONthink/:/System/Library/PreferencePanes/:/Library/PreferencePanes/</string>
 	</dict>
 	<key>variablesdontexport</key>
 	<array>
