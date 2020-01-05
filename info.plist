@@ -4,8 +4,6 @@
 <dict>
 	<key>bundleid</key>
 	<string>com.mpco.recentDocuments</string>
-	<key>category</key>
-	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
 		<key>242EA50D-B03A-4278-A412-B4AFC16AC51F</key>
@@ -546,7 +544,7 @@ fi
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Website: https://github.com/mpco/Alfred3-workflow-recent-documents</string>
+	<string>Website: https://github.com/mpco/AlfredWorkflow-Recent-Documents</string>
 	<key>uidata</key>
 	<dict>
 		<key>242EA50D-B03A-4278-A412-B4AFC16AC51F</key>
@@ -630,16 +628,19 @@ fi
 	</dict>
 	<key>variables</key>
 	<dict>
+		<key>ExcludedFiles</key>
+		<string></string>
 		<key>ExcludedFolders</key>
-		<string>~/DEVONthink/:/System/Library/PreferencePanes/:/Library/PreferencePanes/</string>
+		<string></string>
 	</dict>
 	<key>variablesdontexport</key>
 	<array>
+		<string>ExcludedFiles</string>
 		<string>ExcludedFolders</string>
 	</array>
 	<key>version</key>
-	<string>2.11</string>
+	<string>2.2</string>
 	<key>webaddress</key>
-	<string>https://github.com/mpco/Alfred3-workflow-recent-documents</string>
+	<string>https://github.com/mpco/AlfredWorkflow-Recent-Documents</string>
 </dict>
 </plist>

@@ -110,27 +110,29 @@ def ParseMSOffice2016Plist(MRUFile):
         print(e)
 
 
-def checkFilesInExcludedFolders(fileList):
+def checkFileList(fileList):
     newFileList = []
-    excludeFolderListStr = os.environ["ExcludedFolders"]
-    # ExcludedFolders is unset
-    if not excludeFolderListStr:
-        return fileList
-    excludeFolderList = excludeFolderListStr.split(":")
+    excludedFolderList = os.environ["ExcludedFolders"].split(":") if os.environ["ExcludedFolders"] else []
+    excludedFilesList = os.environ["ExcludedFiles"].split(":") if os.environ["ExcludedFiles"] else []
     for filePath in fileList:
         fileExclude = False
-        for exFolderPath in excludeFolderList:
+        for exFilePath in excludedFilesList:
+            if os.path.samefile(filePath, os.path.expanduser(exFilePath)):
+                fileExclude = True
+                break
+        for exFolderPath in excludedFolderList:
             exFolderPath = os.path.expanduser(exFolderPath)
+            # 检测是否为文件夹路径
             if not os.path.isdir(exFolderPath):
                 continue
             # change "/xxx/xx" to "/xxx/xx/"
             # for distinguish "/xxx/xx" and "/xxx/xx x/xx"
-            if exFolderPath[-1] != "/":
-                exFolderPath += "/"
+            exFolderPath = os.path.join(exFolderPath, "")
             # change "/xxx/xx" to "/xxx/xx/" for comparing exFolderPath "/xxx/xx/" and filePath "/xxx/xx"
             fileFullPath = (filePath + "/") if os.path.isdir(filePath) else filePath
             if fileFullPath.startswith(exFolderPath):
                 fileExclude = True
+                break
         if not fileExclude:
             newFileList.append(filePath)
     return newFileList
@@ -164,7 +166,7 @@ if __name__ == '__main__':
             if __debug__: print("#FileType: sublime_session") # noqa
             itemsLinkList = ParseSublimeText3Session(filePath)
         allItemsLinkList.extend(itemsLinkList)
-    allItemsLinkList = checkFilesInExcludedFolders(allItemsLinkList)
+    allItemsLinkList = checkFileList(allItemsLinkList)
 
     # use current app to open recent documents of current app
     currentAppPath = os.getenv("currentAppPath")
