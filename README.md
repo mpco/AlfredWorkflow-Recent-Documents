@@ -1,14 +1,24 @@
-# Recent Documents / Apps
+<h1 align="center">Recent Documents / Apps</h1>
 
-This workflow can list documents and apps opened recently.    
-Especially, it can list files opened recently by the foremost app.
+<h4 align="center"> Quickly access recent documents and apps.</h4>
 
-System: macOS 10.11+    
-No test for 10.11
+<p align="center">
+    <a href="#">
+        <img src="https://img.shields.io/badge/macOS-10.11%2B-blue" alt="macOS 10.11+"></a>
+    <a href="#">
+        <img src="https://img.shields.io/github/stars/mpco/AlfredWorkflow-Recent-Documents"></a>
+    <a href="https://twitter.com/intent/tweet?text=Amazing%20Alfred%20workflow:%20https://github.com/mpco/AlfredWorkflow-Recent-Documents">
+        <img src="https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2Fmpco%2FAlfredWorkflow-Recent-Documents"></a>
+</p>
 
-[Download](https://github.com/mpco/Alfred3-workflow-recent-documents/releases) [中文说明](https://github.com/mpco/Alfred3-workflow-recent-documents/blob/master/README_CN.md)
+<p align="center">
+    <a href="https://github.com/mpco/Alfred3-workflow-recent-documents/blob/master/README_CN.md">中文说明</a> •
+    <a href="https://github.com/mpco/Alfred3-workflow-recent-documents/releases">Download</a> •
+    <a href="#how-to-use">How To Use</a> •
+    <a href="#configuration">Configuration</a>
+</p>
 
-## Usage
+## How to Use
 
 You can press `Enter` to open the file in result, or press `⌘CMD-Enter` to reveal it in Finder.
 
@@ -41,13 +51,13 @@ These files were recently opened by user, not like `rr` which is just for the fo
 
 ![ra](https://user-images.githubusercontent.com/3690653/45076634-7a5ec800-b11d-11e8-9e1c-f16ac17875fb.png)
 
-### Exclude folders from the results.
+## Configuration
 
-You can add private folder pathes separated by colon `:` to the Workflow Environment Variable `ExcludedFolders`. The results will not show private folders and any files inside them.
+**Exclude files and folders from the results.**
+
+You can add private folder paths separated by colon `:` to the workflow environment variable `ExcludedFolders`. The results will not show private folders and any files inside them. The environment variable `ExcludedFiles` is used to block files and folders themselves.
 
 For example: `~/privateFolder1/:/Users/G/privateFolder2/`
-
-![excludedfolders](https://user-images.githubusercontent.com/3690653/45142715-c1b38a00-b1eb-11e8-9ace-3abeeb99f425.png)
 
 ### Optional Setup
 
