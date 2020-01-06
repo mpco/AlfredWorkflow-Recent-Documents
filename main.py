@@ -115,6 +115,8 @@ def checkFileList(fileList):
     excludedFolderList = os.environ["ExcludedFolders"].split(":") if os.environ["ExcludedFolders"] else []
     excludedFilesList = os.environ["ExcludedFiles"].split(":") if os.environ["ExcludedFiles"] else []
     for filePath in fileList:
+        if not os.path.exists(filePath):
+            continue
         fileExclude = False
         for exFilePath in excludedFilesList:
             if os.path.samefile(filePath, os.path.expanduser(exFilePath)):
