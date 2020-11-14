@@ -198,7 +198,7 @@
 
 macOSVersion=$(sw_vers -productVersion | cut -d '.' -f 1,2)
 
-if [ "$macOSVersion" = "10.15" ] || [ "$macOSVersion" = "10.14" ] || [ "$macOSVersion" = "10.13" ]; then
+if [[ $macOSVersion == 11.* ]] || [ "$macOSVersion" = "10.15" ] || [ "$macOSVersion" = "10.14" ] || [ "$macOSVersion" = "10.13" ]; then
     /usr/bin/python -O main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentApplications.sfl2"
 elif [ "$macOSVersion" = "10.11" ] || [ "$macOSVersion" = "10.12" ]; then
     /usr/bin/python -O main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentApplications.sfl"
@@ -301,7 +301,7 @@ fi
 				<string>
 # check macos version
 macOSVersion=$(sw_vers -productVersion | cut -d '.' -f 1,2)
-if [ "$macOSVersion" = "10.15" ] || [ "$macOSVersion" = "10.14" ] || [ "$macOSVersion" = "10.13" ]; then
+if [[ $macOSVersion == 11.* ]] || [ "$macOSVersion" = "10.15" ] || [ "$macOSVersion" = "10.14" ] || [ "$macOSVersion" = "10.13" ]; then
     MRUfileExt="sfl2"
 elif [ "$macOSVersion" = "10.11" ] || [ "$macOSVersion" = "10.12" ]; then
     MRUfileExt="sfl"
@@ -404,7 +404,7 @@ fi</string>
 				<key>script</key>
 				<string>macOSVersion=$(sw_vers -productVersion | cut -d '.' -f 1,2)
 
-if [ "$macOSVersion" = "10.15" ] || [ "$macOSVersion" = "10.14" ] || [ "$macOSVersion" = "10.13" ]; then
+if [[ $macOSVersion == 11.* ]] || [ "$macOSVersion" = "10.15" ] || [ "$macOSVersion" = "10.14" ] || [ "$macOSVersion" = "10.13" ]; then
     /usr/bin/python -O main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentDocuments.sfl2"
 elif [ "$macOSVersion" = "10.11" ] || [ "$macOSVersion" = "10.12" ]; then
     /usr/bin/python -O main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentDocuments.sfl"
@@ -639,7 +639,7 @@ fi
 		<string>ExcludedFolders</string>
 	</array>
 	<key>version</key>
-	<string>2.12</string>
+	<string>2.14</string>
 	<key>webaddress</key>
 	<string>https://github.com/mpco/AlfredWorkflow-Recent-Documents</string>
 </dict>
