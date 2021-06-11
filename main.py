@@ -119,7 +119,11 @@ def checkFileList(fileList):
             continue
         fileExclude = False
         for exFilePath in excludedFilesList:
-            if os.path.samefile(filePath, os.path.expanduser(exFilePath)):
+            exFilePath = os.path.expanduser(exFilePath)
+            # 检测是否为文件路径
+            if not os.path.isfile(exFilePath):
+                break
+            if os.path.samefile(filePath, exFilePath):
                 fileExclude = True
                 break
         for exFolderPath in excludedFolderList:
