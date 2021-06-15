@@ -99,9 +99,44 @@ def ParseSublimeText3Session(sessionFile):
     return itemsLinkList
 
 
+# deprecated
 def ParseMSOffice2016Plist(MRUFile):
     itemsLinkList = []
     try:
+        plistfile = plistlib.readPlist(MRUFile)
+        for item in plistfile:
+            itemsLinkList.append(unquote(item[7:]).decode('utf8'))
+        return itemsLinkList
+    except Exception as e:
+        # When read binary property list
+        # xml.parsers.expat.ExpatError: not well-formed (invalid token)
+        print(e)
+
+
+# deprecated
+def ParseMSOffice2019Plist(MRUFile):
+    itemsLinkList = []
+    try:
+        with open(MRUFile, "rb") as plistfile:
+            plist = ccl_bplist.load(plistfile)
+            itemsLinkList = [unquote(item[7:].encode("utf8")) for item in plist.keys()]
+        return itemsLinkList
+    except Exception as e:
+        # When read xml property list
+        # ccl_bplist.BplistError: Bad file header
+        print(e)
+
+
+def ParseMSOfficePlist(MRUFile):
+    itemsLinkList = []
+    try:
+        # office 2019
+        with open(MRUFile, "rb") as plistfile:
+            plist = ccl_bplist.load(plistfile)
+            itemsLinkList = [unquote(item[7:].encode("utf8")) for item in plist.keys()]
+        return itemsLinkList
+    except ccl_bplist.BplistError as e:
+        # office 2016
         plistfile = plistlib.readPlist(MRUFile)
         for item in plistfile:
             itemsLinkList.append(unquote(item[7:]).decode('utf8'))
@@ -167,7 +202,7 @@ if __name__ == '__main__':
             itemsLinkList = ParseFinderPlist(filePath)
         elif filePath.endswith(".securebookmarks.plist"):
             if __debug__: print("#FileType: .securebookmarks.plist") # noqa
-            itemsLinkList = ParseMSOffice2016Plist(filePath)
+            itemsLinkList = ParseMSOfficePlist(filePath)
         elif filePath.endswith(".sublime_session"):
             if __debug__: print("#FileType: sublime_session") # noqa
             itemsLinkList = ParseSublimeText3Session(filePath)
