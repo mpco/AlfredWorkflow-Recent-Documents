@@ -25,7 +25,7 @@ def BLOBParser_human(blob):
         print(e)
 
 
-# for 10.13
+# for 10.13 and later version
 def ParseSFL2(MRUFile):
     itemsLinkList = []
     try:
@@ -45,7 +45,7 @@ def ParseSFL2(MRUFile):
                     itemsLinkList.append(itemLink)
             return itemsLinkList
     except Exception as e:
-        print e
+        print(e)
 
 
 # for 10.11, 10.12
@@ -98,6 +98,22 @@ def ParseSublimeText3Session(sessionFile):
     itemsLinkList = jsonObj["settings"]["new_window_settings"]["file_history"][0:15]
     return itemsLinkList
 
+# for VSCode
+def ParseVSCodeJson(jsonFile):
+    itemsLinkList = []
+    try:
+        with open(jsonFile, 'r') as f:
+            entries = json.load(f)['openedPathsList']['entries']
+        for en in entries:
+            if 'folderUri' in en:
+                uri = en['folderUri']
+            elif 'fileUri' in en:
+                uri = en['fileUri'] 
+            if uri[:7] == 'file://':
+                itemsLinkList.append(uri[7:])
+        return itemsLinkList
+    except Exception as e:
+        print(e)
 
 # deprecated
 def ParseMSOffice2016Plist(MRUFile):
@@ -206,6 +222,9 @@ if __name__ == '__main__':
         elif filePath.endswith(".sublime_session"):
             if __debug__: print("#FileType: sublime_session") # noqa
             itemsLinkList = ParseSublimeText3Session(filePath)
+        elif filePath.endswith("storage.json"):
+            if __debug__: print('#FileType: vscode json')
+            itemsLinkList = ParseVSCodeJson(filePath)
         allItemsLinkList.extend(itemsLinkList)
     allItemsLinkList = checkFileList(allItemsLinkList)
 
