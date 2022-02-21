@@ -133,7 +133,7 @@ def ParseMSOfficePlist(MRUFile):
         # office 2019
         with open(MRUFile, "rb") as plistfile:
             plist = ccl_bplist.load(plistfile)
-            itemsLinkList = [unquote(item[7:].encode("utf8")) for item in plist.keys()]
+            itemsLinkList = [unquote(item[7:].encode("utf8")).decode('utf8') for item in plist.keys()]
         return itemsLinkList
     except ccl_bplist.BplistError as e:
         # office 2016
