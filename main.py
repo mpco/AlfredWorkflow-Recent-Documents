@@ -230,7 +230,7 @@ if __name__ == '__main__':
             # replace "." with space for searching filename extension
             "match": filename.replace('.', ' ') + " " + convert2Pinyin(filename),
             "icon": {"type": "fileicon", "path": item},
-            "subtitle": u"🕒 " + modifiedTime + u" 📡 " + item.replace(os.environ["HOME"], "~"),
+            "subtitle": u"❖" + modifiedTime + u"  ❥" + item.replace(os.environ["HOME"], "~"),
             "arg": item
         }
         result['items'].append(temp)
