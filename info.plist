@@ -197,13 +197,15 @@
 # python xxx.py, debug
 
 macOSVersion=$(sw_vers -productVersion | cut -d '.' -f 1,2)
+function version { echo "$@" | awk -F. '{ printf("%d%03d%03d%03d\n", $1,$2,$3,$4); }'; }
 
-if [ "$macOSVersion" = "10.11" ] || [ "$macOSVersion" = "10.12" ]; then
+if [ $(version $macOSVersion) -le $(version "10.12") ]; then
     /usr/bin/python -O main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentApplications.sfl"
-else
+elif [ $(version $macOSVersion) -lt $(version "12.3") ]; then
     /usr/bin/python -O main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentApplications.sfl2"
-fi
-</string>
+else
+    /usr/bin/python3 -O main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentApplications.sfl2"
+fi</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -301,7 +303,10 @@ fi
 				<string>
 # check macos version
 macOSVersion=$(sw_vers -productVersion | cut -d '.' -f 1,2)
-if [ "$macOSVersion" = "10.11" ] || [ "$macOSVersion" = "10.12" ]; then
+
+function version { echo "$@" | awk -F. '{ printf("%d%03d%03d%03d\n", $1,$2,$3,$4); }'; }
+
+if [ $(version $macOSVersion) -le $(version "10.12") ]; then
     MRUfileExt="sfl"
 else
     MRUfileExt="sfl2"
@@ -327,7 +332,11 @@ fi
 
 
 if [ -f "${MRUfile}" ]; then
-    /usr/bin/python -O main.py "${MRUfile}"
+    if [ $(version $macOSVersion) -lt $(version "12.3") ]; then
+        /usr/bin/python -O main.py "${MRUfile}"
+    else
+        /usr/bin/python3 -O main.py "${MRUfile}"
+    fi
 else
     echo '{"items": [{"title": "None Recent Record for the foremost app","subtitle": "(*´･д･)?"}]}'
 fi</string>
@@ -403,13 +412,15 @@ fi</string>
 				<string></string>
 				<key>script</key>
 				<string>macOSVersion=$(sw_vers -productVersion | cut -d '.' -f 1,2)
+function version { echo "$@" | awk -F. '{ printf("%d%03d%03d%03d\n", $1,$2,$3,$4); }'; }
 
-if [ "$macOSVersion" = "10.11" ] || [ "$macOSVersion" = "10.12" ]; then
+if [ $(version $macOSVersion) -le $(version "10.12") ]; then
     /usr/bin/python -O main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentDocuments.sfl"
-else
+elif [ $(version $macOSVersion) -lt $(version "12.3") ]; then
     /usr/bin/python -O main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentDocuments.sfl2"
-fi
-</string>
+else
+    /usr/bin/python3 -O main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentDocuments.sfl2"
+fi</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -520,7 +531,14 @@ fi
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>/usr/bin/python -O main.py "${HOME}/Library/Preferences/com.apple.finder.plist"
+				<string>macOSVersion=$(sw_vers -productVersion | cut -d '.' -f 1,2)
+function version { echo "$@" | awk -F. '{ printf("%d%03d%03d%03d\n", $1,$2,$3,$4); }'; }
+
+if [ $(version $macOSVersion) -lt $(version "12.3") ]; then
+    /usr/bin/python -O main.py "${HOME}/Library/Preferences/com.apple.finder.plist"
+else
+    /usr/bin/python3 -O main.py "${HOME}/Library/Preferences/com.apple.finder.plist"
+fi
 </string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
@@ -639,7 +657,7 @@ fi
 		<string>ExcludedFolders</string>
 	</array>
 	<key>version</key>
-	<string>2.18</string>
+	<string>2.19</string>
 	<key>webaddress</key>
 	<string>https://github.com/mpco/AlfredWorkflow-Recent-Documents</string>
 </dict>

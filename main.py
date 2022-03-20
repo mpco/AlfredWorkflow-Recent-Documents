@@ -12,8 +12,11 @@ import time
 import pinyin
 import plistlib
 import ccl_bplist
-from urllib import unquote
 from mac_alias import Bookmark
+try:
+    from urllib import unquote  # Python 2.X
+except ImportError:
+    from urllib.parse import unquote  # Python 3+
 
 
 def BLOBParser_human(blob):
@@ -36,16 +39,19 @@ def ParseSFL2(MRUFile):
         if plist_objects["root"]["NS.keys"][0] == "items":
             for item in plist_objects["root"]["NS.objects"][0]["NS.objects"]:
                 attributes = dict(zip(item["NS.keys"], item["NS.objects"]))
+                # print(attributes["Bookmark"].decode("iso-8859-1"))
                 if "Bookmark" in attributes:
                     if isinstance(attributes["Bookmark"], str):
                         itemLink = BLOBParser_human(attributes["Bookmark"])
+                    elif isinstance(attributes["Bookmark"], bytes):
+                        itemLink = BLOBParser_human(attributes["Bookmark"])
                     else:
-                        itemLink = BLOBParser_human(
-                            attributes["Bookmark"]['NS.data'])
+                        itemLink = BLOBParser_human(attributes["Bookmark"]['NS.data'])
+                    # print(itemLink)
                     itemsLinkList.append(itemLink)
             return itemsLinkList
     except Exception as e:
-        print e
+        print("#ERROR:", e)
 
 
 # for 10.11, 10.12
@@ -185,7 +191,7 @@ def convert2Pinyin(filename):
     def c2p(matchObj):
         return " " + pinyin.get(matchObj.group(), format="strip", delimiter=" ") + " "
     # replace chinese character with pinyin
-    return re.sub(ur'[\u4e00-\u9fff]+', c2p, filename)
+    return re.sub(u'[\u4e00-\u9fff]+', c2p, filename)
 
 
 if __name__ == '__main__':
