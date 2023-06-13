@@ -18,6 +18,8 @@
     <a href="#configuration">Configuration</a>
 </p>
 
+**Sorry, no more updates as I no longer use a Mac computer and the installation of macOS virtual machine failed.**
+
 ## How to Use
 
 You can press `Enter` to open the file in result, or press `⌘CMD-Enter` to reveal it in Finder.
