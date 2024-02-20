@@ -203,8 +203,10 @@ if [ $(version $macOSVersion) -le $(version "10.12") ]; then
     /usr/bin/python -O main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentApplications.sfl"
 elif [ $(version $macOSVersion) -lt $(version "12.3") ]; then
     /usr/bin/python -O main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentApplications.sfl2"
+elif [ $(version $macOSVersion) -lt $(version "14.0") ]; then
+    /usr/bin/python -O main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentApplications.sfl2"
 else
-    /usr/bin/python3 -O main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentApplications.sfl2"
+    /usr/bin/python3 -O main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentApplications.sfl3"
 fi</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
@@ -308,8 +310,10 @@ function version { echo "$@" | awk -F. '{ printf("%d%03d%03d%03d\n", $1,$2,$3,$4
 
 if [ $(version $macOSVersion) -le $(version "10.12") ]; then
     MRUfileExt="sfl"
-else
+elif [ $(version $macOSVersion) -lt $(version "14.00") ]; then
     MRUfileExt="sfl2"
+else
+    MRUfileExt="sfl3"
 fi
 
 # check app
@@ -418,8 +422,10 @@ if [ $(version $macOSVersion) -le $(version "10.12") ]; then
     /usr/bin/python -O main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentDocuments.sfl"
 elif [ $(version $macOSVersion) -lt $(version "12.3") ]; then
     /usr/bin/python -O main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentDocuments.sfl2"
+elif [ $(version $macOSVersion) -lt $(version "14.0") ]; then
+    /usr/bin/python -O main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentDocuments.sfl2"
 else
-    /usr/bin/python3 -O main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentDocuments.sfl2"
+    /usr/bin/python3 -O main.py "${HOME}/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.RecentDocuments.sfl3"
 fi</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
