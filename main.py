@@ -200,6 +200,9 @@ if __name__ == '__main__':
         if filePath.endswith(".sfl2"):
             if __debug__: print("#FileType: sfl2") # noqa
             itemsLinkList = ParseSFL2(filePath)
+        if filePath.endswith(".sfl3"):
+            if __debug__: print("#FileType: sfl3") # noqa
+            itemsLinkList = ParseSFL2(filePath)
         elif filePath.endswith(".sfl"):
             if __debug__: print("#FileType: sfl") # noqa
             itemsLinkList = ParseSFL(filePath)
