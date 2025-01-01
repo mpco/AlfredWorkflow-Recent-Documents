@@ -866,7 +866,7 @@ fi</string>
 		<string>ExcludedFolders</string>
 	</array>
 	<key>version</key>
-	<string>2.19</string>
+	<string>2.20</string>
 	<key>webaddress</key>
 	<string>https://github.com/mpco/AlfredWorkflow-Recent-Documents</string>
 </dict>
